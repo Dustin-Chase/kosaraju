@@ -21,6 +21,7 @@ private:
 public: 
 	Bag() : bag(0) {	}
 	Bag(unsigned int sz) : bag(sz) { }
+	Bag(const Bag & toCopy);
 	void add(T t) {
 		bag.push_back(new Node(t));
 	}
@@ -32,6 +33,8 @@ public:
 	T getAt(unsigned int v) {
 		return bag[v]->getData(); 
 	}
+
+	void putAt(unsigned int v, T d);
 
 	friend std::ostream& operator<<(std::ostream& os, const Bag & toPrint) {
 		for (auto it = toPrint.bag.begin(); it != toPrint.bag.end(); ++it) {
@@ -50,4 +53,16 @@ public:
 
 };
 
+template<class T>
+inline Bag<T>::Bag(const Bag & toCopy) : bag(toCopy.bag.size()) 
+{
+	for (std::size_t i = 0; i < bag.size(); i++) {
+		bag[i] = new Node(*toCopy.bag[i]);
+	}
+}
 
+template<class T>
+inline void Bag<T>::putAt(unsigned int v, T d)
+{
+	bag[v] = new Node(d); 
+}

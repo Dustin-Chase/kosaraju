@@ -12,6 +12,7 @@ private:
 public:
 	Digraph();
 	Digraph(unsigned int V);
+	Digraph(const Digraph & toCopy);
 	~Digraph();
 	unsigned int numVert() { return V; }
 	unsigned int numEdges() { return E; }
@@ -29,7 +30,8 @@ public:
 
 	//print graph to stdout
 	friend std::ostream& operator<<(std::ostream& os, const Digraph & dg);
-	void operator=(const Digraph & right); 
+	void operator=(const Digraph & right);
+
 };
 
 #endif

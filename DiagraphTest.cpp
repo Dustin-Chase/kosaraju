@@ -21,9 +21,10 @@ int main() {
 	dg.addEdge(2, 3);
 	
 	dg.addEdge(3, 1);
-
+	std::cout << "Original graph is \n"; 
 	std::cout << dg; 
 	
+	std::cout << "Graph reversed is \n";
 	Digraph rev = dg.reverse(); 
 
 	std::cout << rev; 

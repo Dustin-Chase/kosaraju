@@ -8,6 +8,16 @@ Digraph::Digraph(unsigned int V) : V{ V }, E{0} {
 	}
 }
 
+Digraph::Digraph(const Digraph & toCopy) : E {toCopy.E}, V{toCopy.V}, adj(toCopy.adj.size()) {
+	for (std::size_t i = 0; i < adj.size(); ++i) {
+		adj[i] = new Bag<int>(*toCopy.adj[i]);
+		for (std::size_t j = 0; j < adj[j]->size(); ++j) {
+			adj[i]->putAt(j, toCopy.adj[i]->getAt(j));
+		}
+	}
+	
+}
+
 Digraph::~Digraph()
 {
 	for (unsigned int i = 0; i < adj.size(); i++) {
@@ -33,8 +43,6 @@ Digraph Digraph::reverse()
 		}
 		i++;
 	}
-	std::cout << "Right before returning...\n";
-	std::cout << r << '\n';
 	return r;
 }
 
